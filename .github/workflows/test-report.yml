@@ -22,6 +22,7 @@ jobs:
     - name: Generate Report
       run: |
         pwd
+        cd /.github/workflows
         ./report.sh
         
     - name: Commit and Push Changes
