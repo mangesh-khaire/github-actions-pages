@@ -23,18 +23,12 @@ jobs:
       run: |
         pwd
         cd ./docs/
-        echo "New content" > file.txt
+        echo "New content" > new_file.txt
         
-    # Runs a set of commands using the runners shell
-    - name: git config listing
-      run: |
-        git config --list
-    # Runs a set of commands using the runners shell
-    - name: Push changes
-      run: |
-        git config user.name "mangesh-khaire"
-        git config user.email "Mangesh.KHAIRE@3ds.com"
-        git add .
-        git commit -m "Update report [skip ci]"
-        git push
-   
+    - name: Commit and Push Changes
+      uses: EndBug/add-and-commit@v7
+      with:
+        message: "Add new_file.txt via GitHub Actions"
+        author_name: "mangesh-khaire"
+        author_email: "Mangesh.KHAIRE@3ds.com"
+        add: "new_file.txt"
