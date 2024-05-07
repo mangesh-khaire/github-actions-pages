@@ -22,9 +22,6 @@ jobs:
     - name: Generate Report
       run: |
         pwd
-        cd ./scripts/
-        pwd
-        chmod -x ./report.sh
         ./report.sh
         
     - name: Commit and Push Changes
