@@ -23,6 +23,7 @@ jobs:
       run: |
         pwd
         cd ./scripts/
+        pwd
         chmod -x report.sh
         ./report.sh
         
