@@ -22,8 +22,9 @@ jobs:
     - name: Generate Report
       run: |
         pwd
-        chmod -x ./scripts/report.sh
-        ./scripts/report.sh
+        cd ./scripts/
+        chmod -x report.sh
+        ./report.sh
         
     - name: Commit and Push Changes
       uses: EndBug/add-and-commit@v7
