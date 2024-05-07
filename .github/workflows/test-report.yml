@@ -19,11 +19,10 @@ jobs:
     - name: Checkout source code
       uses: actions/checkout@v2
       
-    - name: create file
+    - name: Generate Report
       run: |
         pwd
-        cd ./docs/
-        echo "New content" > new_file.txt
+        ./scripts/report.sh
         
     - name: Commit and Push Changes
       uses: EndBug/add-and-commit@v7
