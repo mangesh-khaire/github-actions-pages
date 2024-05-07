@@ -21,7 +21,8 @@ jobs:
       
     - name: create file
       run: |
-        cd /docs/
+        pwd
+        cd ./docs/
         echo "New content" > file.txt
         
     # Runs a set of commands using the runners shell
