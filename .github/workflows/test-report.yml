@@ -24,7 +24,7 @@ jobs:
         pwd
         cd ./scripts/
         pwd
-        chmod -x report.sh
+        chmod -x ./report.sh
         ./report.sh
         
     - name: Commit and Push Changes
