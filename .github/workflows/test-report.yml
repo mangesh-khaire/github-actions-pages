@@ -18,7 +18,9 @@ jobs:
     steps:
     - name: Checkout source code
       uses: actions/checkout@v2
-    - name:
+      
+    - name: create file
+    - run: |
         cd /docs/
         echo "New content" > file.txt
         
