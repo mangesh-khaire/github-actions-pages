@@ -31,4 +31,4 @@ jobs:
         message: "Add new_file.txt via GitHub Actions"
         author_name: "mangesh-khaire"
         author_email: "Mangesh.KHAIRE@3ds.com"
-        add: "new_file.txt"
+        add: "."
