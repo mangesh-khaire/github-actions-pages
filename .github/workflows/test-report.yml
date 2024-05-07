@@ -32,8 +32,8 @@ jobs:
     # Runs a set of commands using the runners shell
     - name: Push changes
       run: |
-        git config user.name "tekale-v"
-        git config user.email "81675926+tekale-v@users.noreply.github.com"
+        git config user.name "mangesh-khaire"
+        git config user.email "Mangesh.KHAIRE@3ds.com"
         git add .
         git commit -m "Update report [skip ci]"
         git push
