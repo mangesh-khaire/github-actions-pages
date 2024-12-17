@@ -1,0 +1,869 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <style>
+     /* Style the tab */
+
+    .tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    }
+
+    /* Style the buttons inside the tab */
+    .tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+    }
+
+    /* Change background color of buttons on hover */
+    .tab button:hover {
+    background-color: #ddd;
+    }
+
+    /* Create an active/current tablink class */
+    .tab button.active {
+    background-color: #ccc;
+    }
+
+    /* Style the tab content */
+    .tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+    }
+    
+    /* Style for the collapsible content */
+    .collapsible-content {
+        display: none; /* Initially hidden */
+        overflow: hidden; /* Hide overflowing content */
+    }
+
+    /* Style for the collapsible button */
+    .collapsible-button {
+        background-color: #f0f0f0;
+        padding: 10px;
+        border: none;
+        text-align: left;
+        width: 100%;
+        cursor: cell;
+    }
+	
+    /* Style for the button when active (expanded) */
+    .active {
+        background-color: #ddd;
+    }
+    .toggle-button {
+        background-color: #f0f0f0;
+        padding: 10px;
+        border: none;
+        text-align: left;
+        width: 100%;
+        cursor: cell;
+    }
+
+    .expanded-list {
+        
+        display: none;
+    }
+
+    .expanded-list.show {
+        display: block;
+    }
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    th, td {
+        white-space: normal;
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+        font-family:calibri;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    th input[type="text"] {
+        padding: 4px;
+        margin-top: 4px;
+        display:block;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+    }
+    
+    .nested-table {
+		  font-size: 12px;
+		  border-collapse: collapse;
+		  width: 100%;
+	}
+
+    .nested-table th,
+    .nested-table td {
+        padding: 4px;
+        text-align: left;
+        white-space: nowrap;
+    }
+    
+    .enable-filter ::after {
+        content: "  ▼";
+        color: black;
+    } 
+    .enable-filter.active ::after {
+        color: red;
+    }
+    </style>
+    </head>
+    <body>
+    <h1 style="font-family: calibri; font-size: 30px;" align="center">FIS Release Report</h1>
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'PullRequestsDiv')" id='PullRequests'>Pull Requests</button>
+        <button class="tablinks" onclick="openTab(event, 'ConsolidatedFilesDiv')" id='ConsolidatedFiles'>Consolidated Files</button>
+        <button class="tablinks" onclick="openTab(event, 'AtRiskFilesDiv')" id='AtRiskFiles'>Impacted Files</button>
+        <button class="tablinks" onclick="openTab(event, 'ReportSummaryDiv')" id='ReportSummary'>Report Summary</button>
+    </div>
+    <div id="PullRequestsDiv" name="PullRequestsDiv" class="tabcontent" style="display:block">
+    
+    
+        
+    <span style="font-family: calibri; font-size: 15px;" align="center">merged Pull Requests</span>
+    <table id="merged-pr-table" class="display" style="width:100%">
+    <thead>
+        <tr>
+            <th class="enable-filter"><span>PR Number</span></th>
+            <th class="enable-filter"><span>PR Author</span></th>
+            <th class="enable-filter"><span>PR Title</span></th>
+            <th class="enable-filter"><span>Sprint</span></th>
+            <th><span>Files Changed</span></th>
+            <th><span>Files Count</span></th>
+            <th class="enable-filter"><span>SonarQube Check</span></th>
+            <th class="enable-filter"><span>Created At</span></th>
+            <th class="enable-filter"><span>Status Check</span></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+    <td><a href="https://github.com/procter-gamble/plm-3dx/pull/17693" target='_blank'>17693</a></td>
+    <td>Pallavi-A-96</td>
+    <td>Defect 58650</td>
+    <td>NA</td>
+    <td><button class='toggle-button' onclick='toggleList(17693)' id=17693>Files</button>
+    <table class='expanded-list nested-table' id='expandable-list17693'>
+    <tr><th>File Name</th><th>Line(+)</th><th>Line(-)</th></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> BuildFiles/plm3dx_config.csv</td><td>8</td><td>8</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> BuildFiles/plm3dx_ctrlm_config.csv</td><td>56</td><td>56</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> BuildFiles/plm3dx_deploy_properties.csv</td><td>1</td><td>1</td></tr></tr></table></td>
+    <td><br>Total:3<br>(Added:0<br>Deleted:0<br>Modified:3)</td>
+    <td><a href="https://sonarqubeenterprise.pgcloud.com/sonarqube/dashboard?id=plm-3dx&pullRequest=17693" target="_blank">17693</a></td>
+    <td>2024-07-19T13:57:10Z</td>
+    <td><div style="font-weight: bold; background-color: #f1f1f1; padding: 5px;">failure</div></td> 
+    </tr><tr>
+    <td><a href="https://github.com/procter-gamble/plm-3dx/pull/17672" target='_blank'>17672</a></td>
+    <td>kp-pk</td>
+    <td>CR CHG0613618</td>
+    <td>NA</td>
+    <td><button class='toggle-button' onclick='toggleList(17672)' id=17672>Files</button>
+    <table class='expanded-list nested-table' id='expandable-list17672'>
+    <tr><th>File Name</th><th>Line(+)</th><th>Line(-)</th></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> DataHandler/src/com/png/datahandler/updatedata/impl/TestMethodSpecCrudImpl.java</td><td>56</td><td>11</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> DataHandler/src/com/png/datahandler/updatedata/impl/TestMethodSpecRelationshipImpl.java</td><td>13</td><td>10</td></tr></tr></table></td>
+    <td><br>Total:2<br>(Added:0<br>Deleted:0<br>Modified:2)</td>
+    <td><a href="https://sonarqubeenterprise.pgcloud.com/sonarqube/dashboard?id=plm-3dx&pullRequest=17672" target="_blank">17672</a></td>
+    <td>2024-07-17T18:36:07Z</td>
+    <td><div style="font-weight: bold; background-color: #f1f1f1; padding: 5px;">failure</div></td> 
+    </tr><tr>
+    <td><a href="https://github.com/procter-gamble/plm-3dx/pull/17644" target='_blank'>17644</a></td>
+    <td>Arun-9553</td>
+    <td>DEFECT 58588</td>
+    <td>NA</td>
+    <td><button class='toggle-button' onclick='toggleList(17644)' id=17644>Files</button>
+    <table class='expanded-list nested-table' id='expandable-list17644'>
+    <tr><th>File Name</th><th>Line(+)</th><th>Line(-)</th></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 1px solid green; color: green; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">+</span> gplm/scripts/OPTeam/WareHouseClassificationCleanUpScript/WareHouseClassification_CleanUpScript.tcl</td><td>114</td><td>0</td></tr></tr></table></td>
+    <td><br>Total:1<br>(Added:1<br>Deleted:0<br>Modified:0)</td>
+    <td><a href="https://sonarqubeenterprise.pgcloud.com/sonarqube/dashboard?id=plm-3dx&pullRequest=17644" target="_blank">17644</a></td>
+    <td>2024-07-16T14:42:41Z</td>
+    <td><div style="font-weight: bold; background-color: #f1f1f1; padding: 5px;">failure</div></td> 
+    </tr><tr>
+    <td><a href="https://github.com/procter-gamble/plm-3dx/pull/17643" target='_blank'>17643</a></td>
+    <td>Arun-9553</td>
+    <td>RITM4480795-1</td>
+    <td>NA</td>
+    <td><button class='toggle-button' onclick='toggleList(17643)' id=17643>Files</button>
+    <table class='expanded-list nested-table' id='expandable-list17643'>
+    <tr><th>File Name</th><th>Line(+)</th><th>Line(-)</th></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 1px solid green; color: green; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">+</span> gplm/scripts/OPTeam/ScientificNotations/Internal_Material.tcl</td><td>53</td><td>0</td></tr></tr></table></td>
+    <td><br>Total:1<br>(Added:1<br>Deleted:0<br>Modified:0)</td>
+    <td><a href="https://sonarqubeenterprise.pgcloud.com/sonarqube/dashboard?id=plm-3dx&pullRequest=17643" target="_blank">17643</a></td>
+    <td>2024-07-16T14:22:43Z</td>
+    <td><div style="font-weight: bold; background-color: #f1f1f1; padding: 5px;">failure</div></td> 
+    </tr><tr>
+    <td><a href="https://github.com/procter-gamble/plm-3dx/pull/17609" target='_blank'>17609</a></td>
+    <td>Arun-9553</td>
+    <td>DEFECT 58541</td>
+    <td>NA</td>
+    <td><button class='toggle-button' onclick='toggleList(17609)' id=17609>Files</button>
+    <table class='expanded-list nested-table' id='expandable-list17609'>
+    <tr><th>File Name</th><th>Line(+)</th><th>Line(-)</th></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> gplm/scripts/DRA_pg_PartToMCP.sh</td><td>2</td><td>1</td></tr></tr></table></td>
+    <td><br>Total:1<br>(Added:0<br>Deleted:0<br>Modified:1)</td>
+    <td><a href="https://sonarqubeenterprise.pgcloud.com/sonarqube/dashboard?id=plm-3dx&pullRequest=17609" target="_blank">17609</a></td>
+    <td>2024-07-12T11:11:50Z</td>
+    <td><div style="font-weight: bold; background-color: #f1f1f1; padding: 5px;">failure</div></td> 
+    </tr><tr>
+    <td><a href="https://github.com/procter-gamble/plm-3dx/pull/17601" target='_blank'>17601</a></td>
+    <td>jchaladigit</td>
+    <td>Defect 56535</td>
+    <td>NA</td>
+    <td><button class='toggle-button' onclick='toggleList(17601)' id=17601>Files</button>
+    <table class='expanded-list nested-table' id='expandable-list17601'>
+    <tr><th>File Name</th><th>Line(+)</th><th>Line(-)</th></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 1px solid green; color: green; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">+</span> ClientConfig/Enginuity/Post-Scripts/payara5/glassfish/domains/enginuity/applications/CloudIntegration/WEB-INF/web.xml</td><td>169</td><td>0</td></tr></tr></table></td>
+    <td><br>Total:1<br>(Added:1<br>Deleted:0<br>Modified:0)</td>
+    <td><a href="https://sonarqubeenterprise.pgcloud.com/sonarqube/dashboard?id=plm-3dx&pullRequest=17601" target="_blank">17601</a></td>
+    <td>2024-07-11T15:07:26Z</td>
+    <td><div style="font-weight: bold; background-color: #f1f1f1; padding: 5px;">failure</div></td> 
+    </tr><tr>
+    <td><a href="https://github.com/procter-gamble/plm-3dx/pull/17569" target='_blank'>17569</a></td>
+    <td>kp-pk</td>
+    <td>CR CHG0610846 Defect 57860</td>
+    <td>NA</td>
+    <td><button class='toggle-button' onclick='toggleList(17569)' id=17569>Files</button>
+    <table class='expanded-list nested-table' id='expandable-list17569'>
+    <tr><th>File Name</th><th>Line(+)</th><th>Line(-)</th></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> DataHandler/ConfigurationFiles/DHImport/xsl/TestMethodSpecification.xsl</td><td>17</td><td>20</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> DataHandler/src/com/png/datahandler/updatedata/impl/TestMethodSpecRelationshipImpl.java</td><td>80</td><td>6</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> DataHandler/src/com/png/datahandler/updatedata/util/ValidationUtility.java</td><td>28</td><td>3</td></tr></tr></table></td>
+    <td><br>Total:3<br>(Added:0<br>Deleted:0<br>Modified:3)</td>
+    <td><a href="https://sonarqubeenterprise.pgcloud.com/sonarqube/dashboard?id=plm-3dx&pullRequest=17569" target="_blank">17569</a></td>
+    <td>2024-07-10T13:23:59Z</td>
+    <td><div style="font-weight: bold; background-color: #f1f1f1; padding: 5px;">failure</div></td> 
+    </tr><tr>
+    <td><a href="https://github.com/procter-gamble/plm-3dx/pull/17535" target='_blank'>17535</a></td>
+    <td>jchaladigit</td>
+    <td>Release specadvisor 3 dx 24 a14</td>
+    <td>NA</td>
+    <td><button class='toggle-button' onclick='toggleList(17535)' id=17535>Files</button>
+    <table class='expanded-list nested-table' id='expandable-list17535'>
+    <tr><th>File Name</th><th>Line(+)</th><th>Line(-)</th></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> Schema/SpecAdvisor/DevSchema/PostSpinnerScripts/pgConfigurationAdmin_pgPLIDesignAdvConfigAdmin_Modify.tcl</td><td>1</td><td>1</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 1px solid green; color: green; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">+</span> Schema/SpecAdvisor/DevSchema/Spinner/Business/SpinnerAttributeData.xls</td><td>2</td><td>0</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 1px solid green; color: green; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">+</span> Schema/SpecAdvisor/DevSchema/Spinner/Business/SpinnerInterfaceData.xls</td><td>2</td><td>0</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> SpinnerPagePrograms/Business/PageFiles/pgDesignIntelegenceGUI</td><td>6</td><td>3</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> SpinnerPagePrograms/Business/SourceFiles/pgDesignIntelegenceGUI_mxJPO.java</td><td>203</td><td>114</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 1px solid green; color: green; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">+</span> Web/common/images/iconSmallStatusAlert.gif</td><td>0</td><td>0</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 1px solid green; color: green; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">+</span> Web/common/images/pgIntelligentDesignLogo_01.png</td><td>0</td><td>0</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 1px solid green; color: green; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">+</span> Web/common/images/pgIntelligentDesignLogo_02.gif</td><td>0</td><td>0</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 1px solid green; color: green; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">+</span> Web/common/images/pgIntelligentDesignLogo_03.png</td><td>0</td><td>0</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> Web/common/images/pgProficy.png</td><td>0</td><td>0</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> Web/common/scripts/pgPLIDesignAdvisor.js</td><td>10</td><td>7</td></tr></tr></table></td>
+    <td><br>Total:11<br>(Added:6<br>Deleted:0<br>Modified:5)</td>
+    <td><a href="https://sonarqubeenterprise.pgcloud.com/sonarqube/dashboard?id=plm-3dx&pullRequest=17535" target="_blank">17535</a></td>
+    <td>2024-07-09T13:57:56Z</td>
+    <td><div style="font-weight: bold; background-color: #f1f1f1; padding: 5px;">failure</div></td> 
+    </tr><tr>
+    <td><a href="https://github.com/procter-gamble/plm-3dx/pull/17534" target='_blank'>17534</a></td>
+    <td>jchaladigit</td>
+    <td>Release sa 3 dx 24 a14</td>
+    <td>NA</td>
+    <td><button class='toggle-button' onclick='toggleList(17534)' id=17534>Files</button>
+    <table class='expanded-list nested-table' id='expandable-list17534'>
+    <tr><th>File Name</th><th>Line(+)</th><th>Line(-)</th></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> Schema/SpecAdvisor/DevSchema/PostSpinnerScripts/pgConfigurationAdmin_pgPLIDesignAdvConfigAdmin_Modify.tcl</td><td>1</td><td>1</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 1px solid green; color: green; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">+</span> Schema/SpecAdvisor/DevSchema/Spinner/Business/SpinnerAttributeData.xls</td><td>2</td><td>0</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 1px solid green; color: green; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">+</span> Schema/SpecAdvisor/DevSchema/Spinner/Business/SpinnerInterfaceData.xls</td><td>2</td><td>0</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> SpinnerPagePrograms/Business/PageFiles/pgDesignIntelegenceGUI</td><td>6</td><td>3</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> SpinnerPagePrograms/Business/SourceFiles/pgDesignIntelegenceGUI_mxJPO.java</td><td>203</td><td>114</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 1px solid green; color: green; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">+</span> Web/common/images/pgIntelligentDesignLogo_01.png</td><td>0</td><td>0</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 1px solid green; color: green; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">+</span> Web/common/images/pgIntelligentDesignLogo_02.gif</td><td>0</td><td>0</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 1px solid green; color: green; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">+</span> Web/common/images/pgIntelligentDesignLogo_03.png</td><td>0</td><td>0</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> Web/common/images/pgProficy.png</td><td>0</td><td>0</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> Web/common/scripts/pgPLIDesignAdvisor.js</td><td>11</td><td>8</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> deploy.gradle</td><td>1</td><td>1</td></tr></tr></table></td>
+    <td><br>Total:11<br>(Added:5<br>Deleted:0<br>Modified:6)</td>
+    <td><a href="https://sonarqubeenterprise.pgcloud.com/sonarqube/dashboard?id=plm-3dx&pullRequest=17534" target="_blank">17534</a></td>
+    <td>2024-07-09T13:50:49Z</td>
+    <td><div style="font-weight: bold; background-color: #f1f1f1; padding: 5px;">failure</div></td> 
+    </tr><tr>
+    <td><a href="https://github.com/procter-gamble/plm-3dx/pull/17509" target='_blank'>17509</a></td>
+    <td>harish157</td>
+    <td>Defect 58377</td>
+    <td>NA</td>
+    <td><button class='toggle-button' onclick='toggleList(17509)' id=17509>Files</button>
+    <table class='expanded-list nested-table' id='expandable-list17509'>
+    <tr><th>File Name</th><th>Line(+)</th><th>Line(-)</th></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> gplm/scripts/OPTeam/ObsoleteListedFinishedProduct/ObsoleteListedFinishedProduct.tcl</td><td>76</td><td>16</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> gplm/scripts/OPTeam/ObsoleteListedFormulaCard/ObsoleteListedFormulaCard_V2.tcl</td><td>76</td><td>17</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> gplm/scripts/OPTeam/ObsoleteListedFormulationPart/ObsoleteListedFormulationPart.tcl</td><td>82</td><td>19</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> gplm/scripts/OPTeam/ObsoleteListedSpecs/ObsoleteListedSpecs.tcl</td><td>37</td><td>8</td></tr></tr></table></td>
+    <td><br>Total:4<br>(Added:0<br>Deleted:0<br>Modified:4)</td>
+    <td><a href="https://sonarqubeenterprise.pgcloud.com/sonarqube/dashboard?id=plm-3dx&pullRequest=17509" target="_blank">17509</a></td>
+    <td>2024-07-08T12:12:27Z</td>
+    <td><div style="font-weight: bold; background-color: #f1f1f1; padding: 5px;">failure</div></td> 
+    </tr><tr>
+    <td><a href="https://github.com/procter-gamble/plm-3dx/pull/17500" target='_blank'>17500</a></td>
+    <td>munuswamyk</td>
+    <td>Defect 58321</td>
+    <td>NA</td>
+    <td><button class='toggle-button' onclick='toggleList(17500)' id=17500>Files</button>
+    <table class='expanded-list nested-table' id='expandable-list17500'>
+    <tr><th>File Name</th><th>Line(+)</th><th>Line(-)</th></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> Java/pgPDFViewGenerator/pgIPMPDFViewUtil_mxJPO.java</td><td>2</td><td>1</td></tr></tr></table></td>
+    <td><br>Total:1<br>(Added:0<br>Deleted:0<br>Modified:1)</td>
+    <td><a href="https://sonarqubeenterprise.pgcloud.com/sonarqube/dashboard?id=plm-3dx&pullRequest=17500" target="_blank">17500</a></td>
+    <td>2024-07-05T17:19:21Z</td>
+    <td><div style="font-weight: bold; background-color: #f1f1f1; padding: 5px;">failure</div></td> 
+    </tr><tr>
+    <td><a href="https://github.com/procter-gamble/plm-3dx/pull/17499" target='_blank'>17499</a></td>
+    <td>munuswamyk</td>
+    <td>Release 2022x 06</td>
+    <td>NA</td>
+    <td><button class='toggle-button' onclick='toggleList(17499)' id=17499>Files</button>
+    <table class='expanded-list nested-table' id='expandable-list17499'>
+    <tr><th>File Name</th><th>Line(+)</th><th>Line(-)</th></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> .github/jfspecOOTB.txt</td><td>2</td><td>2</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> .github/workflows/OOTBArtifacts.yml</td><td>1</td><td>1</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> .github/workflows/PRChecks_GitActions.yml</td><td>21</td><td>12</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> .github/workflows/SyncNextBranch.yml</td><td>2</td><td>2</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> BuildFiles/getExceptionList.tcl</td><td>45</td><td>17</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> BuildFiles/plm3dx_config.csv</td><td>2</td><td>2</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> BuildFiles/plm3dx_ctrlm_config.csv</td><td>3</td><td>0</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> BuildFiles/plm3dx_deploy_properties.csv</td><td>2</td><td>1</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> BuildFiles/plm3dx_webwidget_config.csv</td><td>1</td><td>1</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> CODEOWNERS</td><td>33</td><td>1</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> ClientConfig/Enginuity/Post-Scripts/payara5/glassfish/domains/enginuity/docroot/index.html</td><td>2</td><td>0</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> DataHandler/ConfigurationFiles/ConsumerUnitData.xml</td><td>797</td><td>797</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> DataHandler/ConfigurationFiles/ConsumerUnitDataElement.xml</td><td>1601</td><td>1601</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> DataHandler/ConfigurationFiles/DHImport/xsl/GPSIngredients_Formula.xsl</td><td>1379</td><td>534</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> DataHandler/ConfigurationFiles/DHImport/xsl/GPSIngredients_ProductPart.xsl</td><td>1387</td><td>542</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> DataHandler/ConfigurationFiles/DHImport/xsl/Harmoni_ChangeAction.xsl</td><td>128</td><td>17</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> DataHandler/ConfigurationFiles/DHImport/xsl/IngTransparencySML_Formula.xsl</td><td>57</td><td>0</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> DataHandler/ConfigurationFiles/DHImport/xsl/IngTransparencySML_ProductPart.xsl</td><td>57</td><td>0</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> DataHandler/ConfigurationFiles/DHImport/xsl/TestMethodSpecification.xsl</td><td>17</td><td>20</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> DataHandler/ConfigurationFiles/DHImportConfig.xml</td><td>259</td><td>26</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> DataHandler/ConfigurationFiles/FinishedProductDSOData.xml</td><td>174</td><td>139</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> DataHandler/ConfigurationFiles/FinishedProductDSODataElement.xml</td><td>358</td><td>322</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> DataHandler/ConfigurationFiles/FormulaDSMData.xml</td><td>2199</td><td>2197</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> DataHandler/ConfigurationFiles/FormulaDSMDataElement.xml</td><td>4397</td><td>4373</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> DataHandler/ConfigurationFiles/GDCPartData.xml</td><td>1593</td><td>1593</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> DataHandler/ConfigurationFiles/GDCPartDataElement.xml</td><td>3243</td><td>3243</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> DataHandler/ConfigurationFiles/MaterialDSMData.xml</td><td>1466</td><td>1465</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> DataHandler/ConfigurationFiles/MaterialDSMDataElement.xml</td><td>3327</td><td>3315</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 1px solid green; color: green; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">+</span> DataHandler/ConfigurationFiles/OAuthConfig.xml</td><td>18</td><td>0</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 1px solid green; color: green; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">+</span> DataHandler/ConfigurationFiles/PackagingExtData.xml</td><td>545</td><td>0</td></tr></tr></table></td>
+    <td><br>Total:2306<br>(Added:2<br>Deleted:0<br>Modified:28)</td>
+    <td><a href="https://sonarqubeenterprise.pgcloud.com/sonarqube/dashboard?id=plm-3dx&pullRequest=17499" target="_blank">17499</a></td>
+    <td>2024-07-05T17:01:48Z</td>
+    <td><div style="font-weight: bold; background-color: #f1f1f1; padding: 5px;">pending</div></td> 
+    </tr><tr>
+    <td><a href="https://github.com/procter-gamble/plm-3dx/pull/17491" target='_blank'>17491</a></td>
+    <td>Pallavi-A-96</td>
+    <td>Defect 58380</td>
+    <td>NA</td>
+    <td><button class='toggle-button' onclick='toggleList(17491)' id=17491>Files</button>
+    <table class='expanded-list nested-table' id='expandable-list17491'>
+    <tr><th>File Name</th><th>Line(+)</th><th>Line(-)</th></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> BuildFiles/plm3dx_config.csv</td><td>3</td><td>3</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> BuildFiles/plm3dx_ctrlm_config.csv</td><td>57</td><td>57</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> BuildFiles/plm3dx_deploy_properties.csv</td><td>1</td><td>1</td></tr></tr></table></td>
+    <td><br>Total:3<br>(Added:0<br>Deleted:0<br>Modified:3)</td>
+    <td><a href="https://sonarqubeenterprise.pgcloud.com/sonarqube/dashboard?id=plm-3dx&pullRequest=17491" target="_blank">17491</a></td>
+    <td>2024-07-05T13:58:33Z</td>
+    <td><div style="font-weight: bold; background-color: #f1f1f1; padding: 5px;">failure</div></td> 
+    </tr><tr>
+    <td><a href="https://github.com/procter-gamble/plm-3dx/pull/17442" target='_blank'>17442</a></td>
+    <td>Pallavi-A-96</td>
+    <td>Defect 58216</td>
+    <td>NA</td>
+    <td><button class='toggle-button' onclick='toggleList(17442)' id=17442>Files</button>
+    <table class='expanded-list nested-table' id='expandable-list17442'>
+    <tr><th>File Name</th><th>Line(+)</th><th>Line(-)</th></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 1px solid green; color: green; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">+</span> gplm/scripts/OPTeam/CURAutomations/UserDataReports/UserJustificationSiteReports.tcl</td><td>73</td><td>0</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 1px solid green; color: green; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">+</span> gplm/scripts/gplm400_Justify_SiteData.sh</td><td>53</td><td>0</td></tr></tr></table></td>
+    <td><br>Total:2<br>(Added:2<br>Deleted:0<br>Modified:0)</td>
+    <td><a href="https://sonarqubeenterprise.pgcloud.com/sonarqube/dashboard?id=plm-3dx&pullRequest=17442" target="_blank">17442</a></td>
+    <td>2024-07-03T11:04:35Z</td>
+    <td><div style="font-weight: bold; background-color: #f1f1f1; padding: 5px;">failure</div></td> 
+    </tr><tr>
+    <td><a href="https://github.com/procter-gamble/plm-3dx/pull/17420" target='_blank'>17420</a></td>
+    <td>pg-marghade-pr</td>
+    <td>CHG0608447 Defect 57601 AB 6873 #17420</td>
+    <td>NA</td>
+    <td><button class='toggle-button' onclick='toggleList(17420)' id=17420>Files</button>
+    <table class='expanded-list nested-table' id='expandable-list17420'>
+    <tr><th>File Name</th><th>Line(+)</th><th>Line(-)</th></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> Web/cpn/pgVPDCPNDisplayCharacteristicDerivedFilterIntermediate.jsp</td><td>4</td><td>0</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> Web/cpn/pg_emxCPNDisplayCharacteristicIntermediateProcess.jsp</td><td>6</td><td>2</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> Web/cpn/pg_emxCPNFormValidation.jsp</td><td>16</td><td>3</td></tr></tr></table></td>
+    <td><br>Total:3<br>(Added:0<br>Deleted:0<br>Modified:3)</td>
+    <td><a href="https://sonarqubeenterprise.pgcloud.com/sonarqube/dashboard?id=plm-3dx&pullRequest=17420" target="_blank">17420</a></td>
+    <td>2024-07-02T13:26:15Z</td>
+    <td><div style="font-weight: bold; background-color: #f1f1f1; padding: 5px;">failure</div></td> 
+    </tr><tr>
+    <td><a href="https://github.com/procter-gamble/plm-3dx/pull/17395" target='_blank'>17395</a></td>
+    <td>jchaladigit</td>
+    <td>Chg0608169 24x fd02 fis cr1</td>
+    <td>NA</td>
+    <td><button class='toggle-button' onclick='toggleList(17395)' id=17395>Files</button>
+    <table class='expanded-list nested-table' id='expandable-list17395'>
+    <tr><th>File Name</th><th>Line(+)</th><th>Line(-)</th></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> Java/pgFISIntegrationWebServices/com/pg/fis/integration/formulas/services/PGFISFormulationDetails.java</td><td>77</td><td>18</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> Java/pgFISIntegrationWebServices/com/pg/fis/integration/material/services/PGFISMaterialDetails.java</td><td>1</td><td>3</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> SpinnerPagePrograms/Business/SourceFiles/bioFormFormulaCloudIntegration_mxJPO.java</td><td>58</td><td>3</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> SpinnerPagePrograms/Business/SourceFiles/bioFormRawMaterialCloudIntegration_mxJPO.java</td><td>58</td><td>0</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> SpinnerPagePrograms/Business/SourceFiles/pgFISConstants_mxJPO.java</td><td>18</td><td>0</td></tr></tr></table></td>
+    <td><br>Total:5<br>(Added:0<br>Deleted:0<br>Modified:5)</td>
+    <td><a href="https://sonarqubeenterprise.pgcloud.com/sonarqube/dashboard?id=plm-3dx&pullRequest=17395" target="_blank">17395</a></td>
+    <td>2024-07-01T16:02:55Z</td>
+    <td><div style="font-weight: bold; background-color: #f1f1f1; padding: 5px;">failure</div></td> 
+    </tr><tr>
+    <td><a href="https://github.com/procter-gamble/plm-3dx/pull/17370" target='_blank'>17370</a></td>
+    <td>munuswamyk</td>
+    <td>CHG0607861 -  SLS [DSM] Data Automations Fix Critical Defect 54292 for 22x.5</td>
+    <td>NA</td>
+    <td><button class='toggle-button' onclick='toggleList(17370)' id=17370>Files</button>
+    <table class='expanded-list nested-table' id='expandable-list17370'>
+    <tr><th>File Name</th><th>Line(+)</th><th>Line(-)</th></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> gplm/scripts/DataAutomation/StructureCopy/DRA_PerformanceCharacteristicsEdit.java</td><td>13</td><td>17</td></tr></tr></table></td>
+    <td><br>Total:1<br>(Added:0<br>Deleted:0<br>Modified:1)</td>
+    <td><a href="https://sonarqubeenterprise.pgcloud.com/sonarqube/dashboard?id=plm-3dx&pullRequest=17370" target="_blank">17370</a></td>
+    <td>2024-06-28T18:54:27Z</td>
+    <td><div style="font-weight: bold; background-color: #f1f1f1; padding: 5px;">failure</div></td> 
+    </tr><tr>
+    <td><a href="https://github.com/procter-gamble/plm-3dx/pull/17367" target='_blank'>17367</a></td>
+    <td>Pallavi-A-96</td>
+    <td>Defect 58216</td>
+    <td>NA</td>
+    <td><button class='toggle-button' onclick='toggleList(17367)' id=17367>Files</button>
+    <table class='expanded-list nested-table' id='expandable-list17367'>
+    <tr><th>File Name</th><th>Line(+)</th><th>Line(-)</th></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 1px solid green; color: green; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">+</span> gplm/scripts/OPTeam/CURAutomations/UserDataReports/UserJustificationSiteReports.tcl</td><td>73</td><td>0</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 1px solid green; color: green; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">+</span> gplm/scripts/gplm400_UserJustificationSiteReports.sh</td><td>53</td><td>0</td></tr></tr></table></td>
+    <td><br>Total:2<br>(Added:2<br>Deleted:0<br>Modified:0)</td>
+    <td><a href="https://sonarqubeenterprise.pgcloud.com/sonarqube/dashboard?id=plm-3dx&pullRequest=17367" target="_blank">17367</a></td>
+    <td>2024-06-28T17:35:56Z</td>
+    <td><div style="font-weight: bold; background-color: #f1f1f1; padding: 5px;">failure</div></td> 
+    </tr><tr>
+    <td><a href="https://github.com/procter-gamble/plm-3dx/pull/17366" target='_blank'>17366</a></td>
+    <td>Pallavi-A-96</td>
+    <td>Defect 58136</td>
+    <td>NA</td>
+    <td><button class='toggle-button' onclick='toggleList(17366)' id=17366>Files</button>
+    <table class='expanded-list nested-table' id='expandable-list17366'>
+    <tr><th>File Name</th><th>Line(+)</th><th>Line(-)</th></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> BuildFiles/plm3dx_ctrlm_config.csv</td><td>3</td><td>3</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> gplm/scripts/OPTeam/CURAutomations/CURFormsRouting/CURFormsRouting.tcl</td><td>3</td><td>3</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> gplm/scripts/gplm053_template.mail</td><td>1</td><td>1</td></tr></tr></table></td>
+    <td><br>Total:3<br>(Added:0<br>Deleted:0<br>Modified:3)</td>
+    <td><a href="https://sonarqubeenterprise.pgcloud.com/sonarqube/dashboard?id=plm-3dx&pullRequest=17366" target="_blank">17366</a></td>
+    <td>2024-06-28T16:55:27Z</td>
+    <td><div style="font-weight: bold; background-color: #f1f1f1; padding: 5px;">failure</div></td> 
+    </tr><tr>
+    <td><a href="https://github.com/procter-gamble/plm-3dx/pull/17314" target='_blank'>17314</a></td>
+    <td>Dinesh-1904</td>
+    <td>CHG0607118</td>
+    <td>NA</td>
+    <td><button class='toggle-button' onclick='toggleList(17314)' id=17314>Files</button>
+    <table class='expanded-list nested-table' id='expandable-list17314'>
+    <tr><th>File Name</th><th>Line(+)</th><th>Line(-)</th></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> gplm/scripts/PGRTAPASSIntegration/PGRTASizeBaseResposeToRulesManager.java</td><td>3</td><td>7</td></tr></tr></table></td>
+    <td><br>Total:1<br>(Added:0<br>Deleted:0<br>Modified:1)</td>
+    <td><a href="https://sonarqubeenterprise.pgcloud.com/sonarqube/dashboard?id=plm-3dx&pullRequest=17314" target="_blank">17314</a></td>
+    <td>2024-06-27T06:16:15Z</td>
+    <td><div style="font-weight: bold; background-color: #f1f1f1; padding: 5px;">failure</div></td> 
+    </tr><tr>
+    <td><a href="https://github.com/procter-gamble/plm-3dx/pull/17309" target='_blank'>17309</a></td>
+    <td>Arun-9553</td>
+    <td>Defect 58138</td>
+    <td>NA</td>
+    <td><button class='toggle-button' onclick='toggleList(17309)' id=17309>Files</button>
+    <table class='expanded-list nested-table' id='expandable-list17309'>
+    <tr><th>File Name</th><th>Line(+)</th><th>Line(-)</th></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> gplm/scripts/OPTeam/EnoviaPersonBusRolesExtract/OpsSponsorAudit/nonEmpAuditConfig.yml</td><td>1</td><td>1</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> gplm/scripts/OPTeam/EnoviaPersonBusRolesExtract/SRUsersRolesExtract/ldap-config.yml</td><td>1</td><td>1</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> gplm/scripts/OPTeam/EnoviaPersonBusRolesExtract/ldap-config.yml</td><td>1</td><td>1</td></tr></tr></table></td>
+    <td><br>Total:3<br>(Added:0<br>Deleted:0<br>Modified:3)</td>
+    <td><a href="https://sonarqubeenterprise.pgcloud.com/sonarqube/dashboard?id=plm-3dx&pullRequest=17309" target="_blank">17309</a></td>
+    <td>2024-06-26T17:10:16Z</td>
+    <td><div style="font-weight: bold; background-color: #f1f1f1; padding: 5px;">failure</div></td> 
+    </tr><tr>
+    <td><a href="https://github.com/procter-gamble/plm-3dx/pull/17303" target='_blank'>17303</a></td>
+    <td>Arun-9553</td>
+    <td>Defect 58136</td>
+    <td>NA</td>
+    <td><button class='toggle-button' onclick='toggleList(17303)' id=17303>Files</button>
+    <table class='expanded-list nested-table' id='expandable-list17303'>
+    <tr><th>File Name</th><th>Line(+)</th><th>Line(-)</th></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 1px solid red; color: red; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">−</span> gplm/scripts/AutoWeeklyReport/WeeklyStatusReport.properties</td><td>0</td><td>18</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> gplm/scripts/OPTeam/CURAutomations/CURFormsRouting/CURFormsRouting.tcl</td><td>3</td><td>3</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 1px solid red; color: red; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">−</span> gplm/scripts/PGCURMetricsReport/PGCURMetricsReport.properties</td><td>0</td><td>18</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> gplm/scripts/gplm053_template.mail</td><td>1</td><td>1</td></tr></tr></table></td>
+    <td><br>Total:4<br>(Added:0<br>Deleted:2<br>Modified:2)</td>
+    <td><a href="https://sonarqubeenterprise.pgcloud.com/sonarqube/dashboard?id=plm-3dx&pullRequest=17303" target="_blank">17303</a></td>
+    <td>2024-06-26T14:47:13Z</td>
+    <td><div style="font-weight: bold; background-color: #f1f1f1; padding: 5px;">failure</div></td> 
+    </tr><tr>
+    <td><a href="https://github.com/procter-gamble/plm-3dx/pull/17292" target='_blank'>17292</a></td>
+    <td>Jyothendrasai</td>
+    <td>Defect 58118</td>
+    <td>NA</td>
+    <td><button class='toggle-button' onclick='toggleList(17292)' id=17292>Files</button>
+    <table class='expanded-list nested-table' id='expandable-list17292'>
+    <tr><th>File Name</th><th>Line(+)</th><th>Line(-)</th></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> SpinnerPagePrograms/Business/PageFiles/pgMaterialGroupCodePage</td><td>78</td><td>11</td></tr></tr></table></td>
+    <td><br>Total:1<br>(Added:0<br>Deleted:0<br>Modified:1)</td>
+    <td><a href="https://sonarqubeenterprise.pgcloud.com/sonarqube/dashboard?id=plm-3dx&pullRequest=17292" target="_blank">17292</a></td>
+    <td>2024-06-26T09:57:09Z</td>
+    <td><div style="font-weight: bold; background-color: #f1f1f1; padding: 5px;">failure</div></td> 
+    </tr><tr>
+    <td><a href="https://github.com/procter-gamble/plm-3dx/pull/17194" target='_blank'>17194</a></td>
+    <td>gadagev</td>
+    <td>Defect 57993 - APOLLO  - A10-1431 - WebWidth value is getting copied from Source APP during Copy Substitute operation</td>
+    <td>NA</td>
+    <td><button class='toggle-button' onclick='toggleList(17194)' id=17194>Files</button>
+    <table class='expanded-list nested-table' id='expandable-list17194'>
+    <tr><th>File Name</th><th>Line(+)</th><th>Line(-)</th></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> SpinnerPagePrograms/Business/SourceFiles/pgDSMLayeredProductAPPMigration_mxJPO.java</td><td>422</td><td>1</td></tr></tr></table></td>
+    <td><br>Total:1<br>(Added:0<br>Deleted:0<br>Modified:1)</td>
+    <td><a href="https://sonarqubeenterprise.pgcloud.com/sonarqube/dashboard?id=plm-3dx&pullRequest=17194" target="_blank">17194</a></td>
+    <td>2024-06-20T11:43:24Z</td>
+    <td><div style="font-weight: bold; background-color: #f1f1f1; padding: 5px;">failure</div></td> 
+    </tr><tr>
+    <td><a href="https://github.com/procter-gamble/plm-3dx/pull/17163" target='_blank'>17163</a></td>
+    <td>gadagev</td>
+    <td>Defect 57993 -   A10-1431 - WebWidth value is getting copied from Source APP during Copy Substitute operation </td>
+    <td>NA</td>
+    <td><button class='toggle-button' onclick='toggleList(17163)' id=17163>Files</button>
+    <table class='expanded-list nested-table' id='expandable-list17163'>
+    <tr><th>File Name</th><th>Line(+)</th><th>Line(-)</th></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> Java/pgApollo/com/png/apollo/apprequest/PGAPPRequestImplementation.java</td><td>139</td><td>5</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> Java/pgApollo/com/png/apollo/pgApolloCommonUtil.java</td><td>44</td><td>1</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> Java/pgApollo/com/png/apollo/sync/ebom/GenerateEBOMService.java</td><td>27</td><td>6</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 1px solid green; color: green; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">+</span> Schema/ECR/CHG0605583/Spinner/Business/SpinnerWebFormFieldData.xls</td><td>2</td><td>0</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> SpinnerPagePrograms/Business/SourceFiles/emxPart_mxJPO.java</td><td>4</td><td>1</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> SpinnerPagePrograms/Business/SourceFiles/pgDSMLayeredProductCopyUtil_mxJPO.java</td><td>3</td><td>1</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> Web/cpn/pg_emxCPNValidation.jsp</td><td>14</td><td>0</td></tr></tr></table></td>
+    <td><br>Total:7<br>(Added:1<br>Deleted:0<br>Modified:6)</td>
+    <td><a href="https://sonarqubeenterprise.pgcloud.com/sonarqube/dashboard?id=plm-3dx&pullRequest=17163" target="_blank">17163</a></td>
+    <td>2024-06-19T09:04:39Z</td>
+    <td><div style="font-weight: bold; background-color: #f1f1f1; padding: 5px;">failure</div></td> 
+    </tr><tr>
+    <td><a href="https://github.com/procter-gamble/plm-3dx/pull/17134" target='_blank'>17134</a></td>
+    <td>Arun-9553</td>
+    <td>DEFECT 57932</td>
+    <td>NA</td>
+    <td><button class='toggle-button' onclick='toggleList(17134)' id=17134>Files</button>
+    <table class='expanded-list nested-table' id='expandable-list17134'>
+    <tr><th>File Name</th><th>Line(+)</th><th>Line(-)</th></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 1px solid green; color: green; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">+</span> gplm/scripts/OPTeam/ScientificNotations/ScientificNotations.tcl</td><td>226</td><td>0</td></tr></tr></table></td>
+    <td><br>Total:1<br>(Added:1<br>Deleted:0<br>Modified:0)</td>
+    <td><a href="https://sonarqubeenterprise.pgcloud.com/sonarqube/dashboard?id=plm-3dx&pullRequest=17134" target="_blank">17134</a></td>
+    <td>2024-06-17T15:43:04Z</td>
+    <td><div style="font-weight: bold; background-color: #f1f1f1; padding: 5px;">failure</div></td> 
+    </tr><tr>
+    <td><a href="https://github.com/procter-gamble/plm-3dx/pull/17129" target='_blank'>17129</a></td>
+    <td>jayvantg</td>
+    <td>User Story 49475</td>
+    <td>NA</td>
+    <td><button class='toggle-button' onclick='toggleList(17129)' id=17129>Files</button>
+    <table class='expanded-list nested-table' id='expandable-list17129'>
+    <tr><th>File Name</th><th>Line(+)</th><th>Line(-)</th></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> .github/jfspecOOTB.txt</td><td>2</td><td>2</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> .github/workflows/OOTBArtifacts.yml</td><td>1</td><td>1</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> .github/workflows/PRChecks_GitActions.yml</td><td>21</td><td>12</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> .github/workflows/SyncNextBranch.yml</td><td>2</td><td>2</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> BuildFiles/getExceptionList.tcl</td><td>45</td><td>17</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> BuildFiles/plm3dx_config.csv</td><td>2</td><td>2</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> BuildFiles/plm3dx_ctrlm_config.csv</td><td>3</td><td>0</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> BuildFiles/plm3dx_deploy_properties.csv</td><td>1</td><td>0</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> CODEOWNERS</td><td>33</td><td>1</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> ClientConfig/Enginuity/Post-Scripts/payara5/glassfish/domains/enginuity/docroot/index.html</td><td>2</td><td>0</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> DataHandler/ConfigurationFiles/DHImport/xsl/GPSIngredients_Formula.xsl</td><td>1302</td><td>535</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> DataHandler/ConfigurationFiles/DHImport/xsl/GPSIngredients_ProductPart.xsl</td><td>1142</td><td>451</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> DataHandler/ConfigurationFiles/DHImport/xsl/Harmoni_ChangeAction.xsl</td><td>128</td><td>17</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> DataHandler/ConfigurationFiles/DHImport/xsl/IngTransparencySML_Formula.xsl</td><td>34</td><td>0</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> DataHandler/ConfigurationFiles/DHImport/xsl/IngTransparencySML_ProductPart.xsl</td><td>34</td><td>0</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> DataHandler/ConfigurationFiles/DHImport/xsl/TestMethodSpecification.xsl</td><td>17</td><td>20</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> DataHandler/ConfigurationFiles/DHImportConfig.xml</td><td>259</td><td>26</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> DataHandler/ConfigurationFiles/FinishedProductDSOData.xml</td><td>174</td><td>139</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> DataHandler/ConfigurationFiles/FinishedProductDSODataElement.xml</td><td>358</td><td>322</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> DataHandler/ConfigurationFiles/FormulaDSMData.xml</td><td>2191</td><td>2190</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> DataHandler/ConfigurationFiles/FormulaDSMDataElement.xml</td><td>4392</td><td>4380</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 1px solid green; color: green; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">+</span> DataHandler/ConfigurationFiles/OAuthConfig.xml</td><td>18</td><td>0</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 1px solid green; color: green; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">+</span> DataHandler/ConfigurationFiles/PackagingExtData.xml</td><td>545</td><td>0</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 1px solid green; color: green; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">+</span> DataHandler/ConfigurationFiles/PackagingExtDataElement.xml</td><td>1479</td><td>0</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> DataHandler/ConfigurationFiles/PerfSpecsExtData.xml</td><td>446</td><td>445</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> DataHandler/ConfigurationFiles/PerfSpecsExtDataElement.xml</td><td>1121</td><td>1109</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> DataHandler/ConfigurationFiles/ProductPartData.xml</td><td>1728</td><td>1727</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> DataHandler/ConfigurationFiles/ProductPartDataElement.xml</td><td>3541</td><td>3529</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> DataHandler/ConfigurationFiles/StructuredATSData.xml</td><td>254</td><td>323</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> DataHandler/ConfigurationFiles/StructuredATSDataElement.xml</td><td>482</td><td>926</td></tr></tr></table></td>
+    <td><br>Total:1389<br>(Added:3<br>Deleted:0<br>Modified:27)</td>
+    <td><a href="https://sonarqubeenterprise.pgcloud.com/sonarqube/dashboard?id=plm-3dx&pullRequest=17129" target="_blank">17129</a></td>
+    <td>2024-06-17T13:41:25Z</td>
+    <td><div style="font-weight: bold; background-color: #f1f1f1; padding: 5px;">pending</div></td> 
+    </tr><tr>
+    <td><a href="https://github.com/procter-gamble/plm-3dx/pull/17120" target='_blank'>17120</a></td>
+    <td>dependabot[bot]</td>
+    <td>Bump braces, @vue/cli-plugin-babel, @vue/cli-plugin-eslint and @vue/cli-service in /WebWidgetSourceFiles/PGWebapps/PGCompareTool</td>
+    <td>NA</td>
+    <td><button class='toggle-button' onclick='toggleList(17120)' id=17120>Files</button>
+    <table class='expanded-list nested-table' id='expandable-list17120'>
+    <tr><th>File Name</th><th>Line(+)</th><th>Line(-)</th></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> WebWidgetSourceFiles/PGWebapps/PGCompareTool/package-lock.json</td><td>5323</td><td>11216</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> WebWidgetSourceFiles/PGWebapps/PGCompareTool/package.json</td><td>3</td><td>3</td></tr></tr></table></td>
+    <td><br>Total:2<br>(Added:0<br>Deleted:0<br>Modified:2)</td>
+    <td><a href="https://sonarqubeenterprise.pgcloud.com/sonarqube/dashboard?id=plm-3dx&pullRequest=17120" target="_blank">17120</a></td>
+    <td>2024-06-15T15:31:43Z</td>
+    <td><div style="font-weight: bold; background-color: #f1f1f1; padding: 5px;">failure</div></td> 
+    </tr><tr>
+    <td><a href="https://github.com/procter-gamble/plm-3dx/pull/17104" target='_blank'>17104</a></td>
+    <td>gadagev</td>
+    <td>Defect 57876 - APOLLO - A10-1429 - LPD APP - Drag and Drop Issue</td>
+    <td>NA</td>
+    <td><button class='toggle-button' onclick='toggleList(17104)' id=17104>Files</button>
+    <table class='expanded-list nested-table' id='expandable-list17104'>
+    <tr><th>File Name</th><th>Line(+)</th><th>Line(-)</th></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> Java/pgApollo/com/png/apollo/designtool/getData/ReadWriteXMLForPLMDTDocument.java</td><td>19</td><td>4</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> Java/pgApollo/com/png/apollo/pgApolloCommonUtil.java</td><td>35</td><td>1</td></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> SpinnerPagePrograms/Business/SourceFiles/pgDSMLayeredProductSyncUtil_mxJPO.java</td><td>18</td><td>0</td></tr></tr></table></td>
+    <td><br>Total:3<br>(Added:0<br>Deleted:0<br>Modified:3)</td>
+    <td><a href="https://sonarqubeenterprise.pgcloud.com/sonarqube/dashboard?id=plm-3dx&pullRequest=17104" target="_blank">17104</a></td>
+    <td>2024-06-14T09:28:46Z</td>
+    <td><div style="font-weight: bold; background-color: #f1f1f1; padding: 5px;">pending</div></td> 
+    </tr><tr>
+    <td><a href="https://github.com/procter-gamble/plm-3dx/pull/17076" target='_blank'>17076</a></td>
+    <td>harish157</td>
+    <td>Defect 57887</td>
+    <td>NA</td>
+    <td><button class='toggle-button' onclick='toggleList(17076)' id=17076>Files</button>
+    <table class='expanded-list nested-table' id='expandable-list17076'>
+    <tr><th>File Name</th><th>Line(+)</th><th>Line(-)</th></tr><tr><td><span style="display: inline-block; width: 12px; height: 12px; border: 2px solid orange; color: orange; text-align: center; line-height: 12px; font-size: 10px; border-radius: 2px;">&#x2022;</span> gplm/scripts/OPTeam/ScriptsToExtractClaimRequests_ClaimSupport_Claims/ScriptsToExtractClaimRequests_ClaimSupport_Claims.tcl</td><td>28</td><td>26</td></tr></tr></table></td>
+    <td><br>Total:1<br>(Added:0<br>Deleted:0<br>Modified:1)</td>
+    <td><a href="https://sonarqubeenterprise.pgcloud.com/sonarqube/dashboard?id=plm-3dx&pullRequest=17076" target="_blank">17076</a></td>
+    <td>2024-06-13T09:33:58Z</td>
+    <td><div style="font-weight: bold; background-color: #f1f1f1; padding: 5px;">failure</div></td> 
+    </tr>
+        
+    </tbody>
+    </table>
+        
+    <h3>No open Pull Request Found</h3>
+    
+    </div>
+    <div id="ConsolidatedFilesDiv" name="ConsolidatedFilesDiv" class="tabcontent" style="display:none">
+    <h2>Consolidated File List</h2>
+    <table border="1">
+    
+        <tr>
+        <td><button class='toggle-button' onclick='togglefolder("Schema")' id='Schema'>Schema</button>
+        <ul class='expanded-list' id='expandable-listSchema'>
+        <li>Schema/ECR/CHG0605583/Spinner/Business/SpinnerWebFormFieldData.xls</li>
+<li>Schema/SpecAdvisor/DevSchema/Spinner/Business/SpinnerInterfaceData.xls</li>
+<li>Schema/SpecAdvisor/DevSchema/PostSpinnerScripts/pgConfigurationAdmin_pgPLIDesignAdvConfigAdmin_Modify.tcl</li>
+<li>Schema/SpecAdvisor/DevSchema/Spinner/Business/SpinnerAttributeData.xls</li>
+
+        </ul>
+        </td>
+        </tr>
+        
+        <tr>
+        <td><button class='toggle-button' onclick='togglefolder("ClientConfig")' id='ClientConfig'>ClientConfig</button>
+        <ul class='expanded-list' id='expandable-listClientConfig'>
+        <li>ClientConfig/Enginuity/Post-Scripts/payara5/glassfish/domains/enginuity/applications/CloudIntegration/WEB-INF/web.xml</li>
+<li>ClientConfig/Enginuity/Post-Scripts/payara5/glassfish/domains/enginuity/docroot/index.html</li>
+
+        </ul>
+        </td>
+        </tr>
+        
+        <tr>
+        <td><button class='toggle-button' onclick='togglefolder("WebWidget")' id='WebWidget'>WebWidget</button>
+        <ul class='expanded-list' id='expandable-listWebWidget'>
+        <li>WebWidgetSourceFiles/PGWebapps/PGCompareTool/package-lock.json</li>
+<li>WebWidgetSourceFiles/PGWebapps/PGCompareTool/package.json</li>
+
+        </ul>
+        </td>
+        </tr>
+        
+        <tr>
+        <td><button class='toggle-button' onclick='togglefolder("Web")' id='Web'>Web</button>
+        <ul class='expanded-list' id='expandable-listWeb'>
+        <li>Web/common/images/pgIntelligentDesignLogo_01.png</li>
+<li>Web/cpn/pg_emxCPNDisplayCharacteristicIntermediateProcess.jsp</li>
+<li>Web/common/images/pgIntelligentDesignLogo_03.png</li>
+<li>Web/cpn/pg_emxCPNFormValidation.jsp</li>
+<li>Web/cpn/pg_emxCPNValidation.jsp</li>
+<li>Web/cpn/pgVPDCPNDisplayCharacteristicDerivedFilterIntermediate.jsp</li>
+<li>Web/common/images/iconSmallStatusAlert.gif</li>
+<li>Web/common/images/pgIntelligentDesignLogo_02.gif</li>
+<li>Web/common/images/pgProficy.png</li>
+<li>Web/common/scripts/pgPLIDesignAdvisor.js</li>
+
+        </ul>
+        </td>
+        </tr>
+        
+        <tr>
+        <td><button class='toggle-button' onclick='togglefolder("Java")' id='Java'>Java</button>
+        <ul class='expanded-list' id='expandable-listJava'>
+        <li>Java/pgFISIntegrationWebServices/com/pg/fis/integration/material/services/PGFISMaterialDetails.java</li>
+<li>Java/pgApollo/com/png/apollo/pgApolloCommonUtil.java</li>
+<li>Java/pgApollo/com/png/apollo/sync/ebom/GenerateEBOMService.java</li>
+<li>Java/pgFISIntegrationWebServices/com/pg/fis/integration/formulas/services/PGFISFormulationDetails.java</li>
+<li>Java/pgPDFViewGenerator/pgIPMPDFViewUtil_mxJPO.java</li>
+<li>Java/pgApollo/com/png/apollo/designtool/getData/ReadWriteXMLForPLMDTDocument.java</li>
+<li>Java/pgApollo/com/png/apollo/apprequest/PGAPPRequestImplementation.java</li>
+
+        </ul>
+        </td>
+        </tr>
+        
+        <tr>
+        <td><button class='toggle-button' onclick='togglefolder("deploy.gradle")' id='deploy.gradle'>deploy.gradle</button>
+        <ul class='expanded-list' id='expandable-listdeploy.gradle'>
+        <li>deploy.gradle</li>
+
+        </ul>
+        </td>
+        </tr>
+        
+        <tr>
+        <td><button class='toggle-button' onclick='togglefolder("DataHandler")' id='DataHandler'>DataHandler</button>
+        <ul class='expanded-list' id='expandable-listDataHandler'>
+        <li>DataHandler/ConfigurationFiles/ConsumerUnitData.xml</li>
+<li>DataHandler/ConfigurationFiles/FormulaDSMData.xml</li>
+<li>DataHandler/ConfigurationFiles/GDCPartData.xml</li>
+<li>DataHandler/ConfigurationFiles/StructuredATSDataElement.xml</li>
+<li>DataHandler/ConfigurationFiles/MaterialDSMData.xml</li>
+<li>DataHandler/ConfigurationFiles/FormulaDSMDataElement.xml</li>
+<li>DataHandler/ConfigurationFiles/ProductPartDataElement.xml</li>
+<li>DataHandler/ConfigurationFiles/DHImport/xsl/GPSIngredients_ProductPart.xsl</li>
+<li>DataHandler/src/com/png/datahandler/updatedata/util/ValidationUtility.java</li>
+<li>DataHandler/ConfigurationFiles/PerfSpecsExtData.xml</li>
+<li>DataHandler/ConfigurationFiles/ProductPartData.xml</li>
+<li>DataHandler/ConfigurationFiles/OAuthConfig.xml</li>
+<li>DataHandler/ConfigurationFiles/FinishedProductDSOData.xml</li>
+<li>DataHandler/src/com/png/datahandler/updatedata/impl/TestMethodSpecCrudImpl.java</li>
+<li>DataHandler/ConfigurationFiles/DHImportConfig.xml</li>
+<li>DataHandler/ConfigurationFiles/DHImport/xsl/Harmoni_ChangeAction.xsl</li>
+<li>DataHandler/ConfigurationFiles/MaterialDSMDataElement.xml</li>
+<li>DataHandler/src/com/png/datahandler/updatedata/impl/TestMethodSpecRelationshipImpl.java</li>
+<li>DataHandler/ConfigurationFiles/DHImport/xsl/TestMethodSpecification.xsl</li>
+<li>DataHandler/ConfigurationFiles/PackagingExtData.xml</li>
+<li>DataHandler/ConfigurationFiles/DHImport/xsl/GPSIngredients_Formula.xsl</li>
+<li>DataHandler/ConfigurationFiles/DHImport/xsl/IngTransparencySML_Formula.xsl</li>
+<li>DataHandler/ConfigurationFiles/StructuredATSData.xml</li>
+<li>DataHandler/ConfigurationFiles/FinishedProductDSODataElement.xml</li>
+<li>DataHandler/ConfigurationFiles/ConsumerUnitDataElement.xml</li>
+<li>DataHandler/ConfigurationFiles/GDCPartDataElement.xml</li>
+<li>DataHandler/ConfigurationFiles/PerfSpecsExtDataElement.xml</li>
+<li>DataHandler/ConfigurationFiles/DHImport/xsl/IngTransparencySML_ProductPart.xsl</li>
+<li>DataHandler/ConfigurationFiles/PackagingExtDataElement.xml</li>
+
+        </ul>
+        </td>
+        </tr>
+        
+        <tr>
+        <td><button class='toggle-button' onclick='togglefolder("gplm")' id='gplm'>gplm</button>
+        <ul class='expanded-list' id='expandable-listgplm'>
+        <li>gplm/scripts/gplm053_template.mail</li>
+<li>gplm/scripts/OPTeam/EnoviaPersonBusRolesExtract/SRUsersRolesExtract/ldap-config.yml</li>
+<li>gplm/scripts/AutoWeeklyReport/WeeklyStatusReport.properties</li>
+<li>gplm/scripts/OPTeam/EnoviaPersonBusRolesExtract/OpsSponsorAudit/nonEmpAuditConfig.yml</li>
+<li>gplm/scripts/OPTeam/CURAutomations/UserDataReports/UserJustificationSiteReports.tcl</li>
+<li>gplm/scripts/DataAutomation/StructureCopy/DRA_PerformanceCharacteristicsEdit.java</li>
+<li>gplm/scripts/OPTeam/ObsoleteListedFormulationPart/ObsoleteListedFormulationPart.tcl</li>
+<li>gplm/scripts/gplm400_Justify_SiteData.sh</li>
+<li>gplm/scripts/OPTeam/CURAutomations/CURFormsRouting/CURFormsRouting.tcl</li>
+<li>gplm/scripts/DRA_pg_PartToMCP.sh</li>
+<li>gplm/scripts/OPTeam/EnoviaPersonBusRolesExtract/ldap-config.yml</li>
+<li>gplm/scripts/OPTeam/ObsoleteListedFinishedProduct/ObsoleteListedFinishedProduct.tcl</li>
+<li>gplm/scripts/PGCURMetricsReport/PGCURMetricsReport.properties</li>
+<li>gplm/scripts/OPTeam/ScientificNotations/Internal_Material.tcl</li>
+<li>gplm/scripts/OPTeam/ScientificNotations/ScientificNotations.tcl</li>
+<li>gplm/scripts/OPTeam/WareHouseClassificationCleanUpScript/WareHouseClassification_CleanUpScript.tcl</li>
+<li>gplm/scripts/OPTeam/ScriptsToExtractClaimRequests_ClaimSupport_Claims/ScriptsToExtractClaimRequests_ClaimSupport_Claims.tcl</li>
+<li>gplm/scripts/OPTeam/ObsoleteListedFormulaCard/ObsoleteListedFormulaCard_V2.tcl</li>
+<li>gplm/scripts/PGRTAPASSIntegration/PGRTASizeBaseResposeToRulesManager.java</li>
+<li>gplm/scripts/OPTeam/ObsoleteListedSpecs/ObsoleteListedSpecs.tcl</li>
+<li>gplm/scripts/gplm400_UserJustificationSiteReports.sh</li>
+
+        </ul>
+        </td>
+        </tr>
+        
+        <tr>
+        <td><button class='toggle-button' onclick='togglefolder("SpinnerPagePrograms")' id='SpinnerPagePrograms'>SpinnerPagePrograms</button>
+        <ul class='expanded-list' id='expandable-listSpinnerPagePrograms'>
+        <li>SpinnerPagePrograms/Business/SourceFiles/pgDSMLayeredProductSyncUtil_mxJPO.java</li>
+<li>SpinnerPagePrograms/Business/SourceFiles/pgDSMLayeredProductAPPMigration_mxJPO.java</li>
+<li>SpinnerPagePrograms/Business/SourceFiles/bioFormRawMaterialCloudIntegration_mxJPO.java</li>
+<li>SpinnerPagePrograms/Business/SourceFiles/emxPart_mxJPO.java</li>
+<li>SpinnerPagePrograms/Business/SourceFiles/pgDesignIntelegenceGUI_mxJPO.java</li>
+<li>SpinnerPagePrograms/Business/PageFiles/pgDesignIntelegenceGUI</li>
+<li>SpinnerPagePrograms/Business/PageFiles/pgMaterialGroupCodePage</li>
+<li>SpinnerPagePrograms/Business/SourceFiles/bioFormFormulaCloudIntegration_mxJPO.java</li>
+<li>SpinnerPagePrograms/Business/SourceFiles/pgDSMLayeredProductCopyUtil_mxJPO.java</li>
+<li>SpinnerPagePrograms/Business/SourceFiles/pgFISConstants_mxJPO.java</li>
+
+        </ul>
+        </td>
+        </tr>
+        
+        <tr>
+        <td><button class='toggle-button' onclick='togglefolder(".github")' id='.github'>.github</button>
+        <ul class='expanded-list' id='expandable-list.github'>
+        <li>.github/workflows/OOTBArtifacts.yml</li>
+<li>.github/workflows/SyncNextBranch.yml</li>
+<li>.github/jfspecOOTB.txt</li>
+<li>.github/workflows/PRChecks_GitActions.yml</li>
+
+        </ul>
+        </td>
+        </tr>
+        
+        <tr>
+        <td><button class='toggle-button' onclick='togglefolder("BuildFiles")' id='BuildFiles'>BuildFiles</button>
+        <ul class='expanded-list' id='expandable-listBuildFiles'>
+        <li>BuildFiles/plm3dx_webwidget_config.csv</li>
+<li>BuildFiles/plm3dx_config.csv</li>
+<li>BuildFiles/getExceptionList.tcl</li>
+<li>BuildFiles/plm3dx_ctrlm_config.csv</li>
+<li>BuildFiles/plm3dx_deploy_properties.csv</li>
+
+        </ul>
+        </td>
+        </tr>
+        
+        <tr>
+        <td><button class='toggle-button' onclick='togglefolder("CODEOWNERS")' id='CODEOWNERS'>CODEOWNERS</button>
+        <ul class='expanded-list' id='expandable-listCODEOWNERS'>
+        <li>CODEOWNERS</li>
+
+        </ul>
+        </td>
+        </tr>
+        
+    </table>
+    </div>
+    
+    <div id='AtRiskFilesDiv' name='AtRiskFilesDiv' class='tabcontent' style='display:none'>
+    <h2>Impacted Files List</h2>
+    <table border='1'>
+    <tr><td>SpinnerAttributeData.xls</td></tr><tr><td>SpinnerTriggerData.xls</td></tr><tr><td>Schema/ECR/CHG0605583/Spinner/Business/SpinnerWebFormFieldData.xls</td></tr><tr><td>ClientConfig/Enginuity/Post-Scripts/payara5/glassfish/domains/enginuity/applications/CloudIntegration/WEB-INF/web.xml</td></tr><tr><td>WebWidgetSourceFiles/PGWebapps/PGCompareTool/package-lock.json</td></tr><tr><td>Web/common/images/pgIntelligentDesignLogo_01.png</td></tr><tr><td>Java/pgFISIntegrationWebServices/com/pg/fis/integration/material/services/PGFISMaterialDetails.java</td></tr><tr><td>deploy.gradle</td></tr><tr><td>DataHandler/ConfigurationFiles/ConsumerUnitData.xml</td></tr><tr><td>gplm/scripts/gplm053_template.mail</td></tr><tr><td>DataHandler/ConfigurationFiles/FormulaDSMData.xml</td></tr><tr><td>Java/pgApollo/com/png/apollo/pgApolloCommonUtil.java</td></tr><tr><td>Web/cpn/pg_emxCPNDisplayCharacteristicIntermediateProcess.jsp</td></tr><tr><td>DataHandler/ConfigurationFiles/GDCPartData.xml</td></tr><tr><td>SpinnerPagePrograms/Business/SourceFiles/pgDSMLayeredProductSyncUtil_mxJPO.java</td></tr><tr><td>DataHandler/ConfigurationFiles/StructuredATSDataElement.xml</td></tr><tr><td>DataHandler/ConfigurationFiles/MaterialDSMData.xml</td></tr><tr><td>SpinnerPagePrograms/Business/SourceFiles/pgDSMLayeredProductAPPMigration_mxJPO.java</td></tr><tr><td>DataHandler/ConfigurationFiles/FormulaDSMDataElement.xml</td></tr><tr><td>SpinnerPagePrograms/Business/SourceFiles/bioFormRawMaterialCloudIntegration_mxJPO.java</td></tr><tr><td>DataHandler/ConfigurationFiles/ProductPartDataElement.xml</td></tr><tr><td>gplm/scripts/OPTeam/EnoviaPersonBusRolesExtract/SRUsersRolesExtract/ldap-config.yml</td></tr><tr><td>DataHandler/ConfigurationFiles/DHImport/xsl/GPSIngredients_ProductPart.xsl</td></tr><tr><td>gplm/scripts/AutoWeeklyReport/WeeklyStatusReport.properties</td></tr><tr><td>Schema/SpecAdvisor/DevSchema/Spinner/Business/SpinnerInterfaceData.xls</td></tr><tr><td>.github/workflows/OOTBArtifacts.yml</td></tr><tr><td>DataHandler/src/com/png/datahandler/updatedata/util/ValidationUtility.java</td></tr><tr><td>DataHandler/ConfigurationFiles/PerfSpecsExtData.xml</td></tr><tr><td>DataHandler/ConfigurationFiles/ProductPartData.xml</td></tr><tr><td>Schema/SpecAdvisor/DevSchema/PostSpinnerScripts/pgConfigurationAdmin_pgPLIDesignAdvConfigAdmin_Modify.tcl</td></tr><tr><td>SpinnerPagePrograms/Business/SourceFiles/emxPart_mxJPO.java</td></tr><tr><td>DataHandler/ConfigurationFiles/OAuthConfig.xml</td></tr><tr><td>WebWidgetSourceFiles/PGWebapps/PGCompareTool/package.json</td></tr><tr><td>Web/common/images/pgIntelligentDesignLogo_03.png</td></tr><tr><td>SpinnerPagePrograms/Business/SourceFiles/pgDesignIntelegenceGUI_mxJPO.java</td></tr><tr><td>Java/pgApollo/com/png/apollo/sync/ebom/GenerateEBOMService.java</td></tr><tr><td>DataHandler/ConfigurationFiles/FinishedProductDSOData.xml</td></tr><tr><td>Schema/SpecAdvisor/DevSchema/Spinner/Business/SpinnerAttributeData.xls</td></tr><tr><td>BuildFiles/plm3dx_webwidget_config.csv</td></tr><tr><td>BuildFiles/plm3dx_config.csv</td></tr><tr><td>gplm/scripts/OPTeam/EnoviaPersonBusRolesExtract/OpsSponsorAudit/nonEmpAuditConfig.yml</td></tr><tr><td>Web/cpn/pg_emxCPNFormValidation.jsp</td></tr><tr><td>BuildFiles/getExceptionList.tcl</td></tr><tr><td>DataHandler/src/com/png/datahandler/updatedata/impl/TestMethodSpecCrudImpl.java</td></tr><tr><td>gplm/scripts/OPTeam/CURAutomations/UserDataReports/UserJustificationSiteReports.tcl</td></tr><tr><td>gplm/scripts/DataAutomation/StructureCopy/DRA_PerformanceCharacteristicsEdit.java</td></tr><tr><td>SpinnerPagePrograms/Business/PageFiles/pgDesignIntelegenceGUI</td></tr><tr><td>Web/cpn/pg_emxCPNValidation.jsp</td></tr><tr><td>gplm/scripts/OPTeam/ObsoleteListedFormulationPart/ObsoleteListedFormulationPart.tcl</td></tr><tr><td>gplm/scripts/gplm400_Justify_SiteData.sh</td></tr><tr><td>.github/workflows/SyncNextBranch.yml</td></tr><tr><td>gplm/scripts/OPTeam/CURAutomations/CURFormsRouting/CURFormsRouting.tcl</td></tr><tr><td>DataHandler/ConfigurationFiles/DHImportConfig.xml</td></tr><tr><td>.github/jfspecOOTB.txt</td></tr><tr><td>DataHandler/ConfigurationFiles/DHImport/xsl/Harmoni_ChangeAction.xsl</td></tr><tr><td>gplm/scripts/DRA_pg_PartToMCP.sh</td></tr><tr><td>Java/pgFISIntegrationWebServices/com/pg/fis/integration/formulas/services/PGFISFormulationDetails.java</td></tr><tr><td>gplm/scripts/OPTeam/EnoviaPersonBusRolesExtract/ldap-config.yml</td></tr><tr><td>Web/cpn/pgVPDCPNDisplayCharacteristicDerivedFilterIntermediate.jsp</td></tr><tr><td>gplm/scripts/OPTeam/ObsoleteListedFinishedProduct/ObsoleteListedFinishedProduct.tcl</td></tr><tr><td>DataHandler/ConfigurationFiles/MaterialDSMDataElement.xml</td></tr><tr><td>CODEOWNERS</td></tr><tr><td>gplm/scripts/PGCURMetricsReport/PGCURMetricsReport.properties</td></tr><tr><td>DataHandler/src/com/png/datahandler/updatedata/impl/TestMethodSpecRelationshipImpl.java</td></tr><tr><td>BuildFiles/plm3dx_ctrlm_config.csv</td></tr><tr><td>.github/workflows/PRChecks_GitActions.yml</td></tr><tr><td>DataHandler/ConfigurationFiles/DHImport/xsl/TestMethodSpecification.xsl</td></tr><tr><td>gplm/scripts/OPTeam/ScientificNotations/Internal_Material.tcl</td></tr><tr><td>BuildFiles/plm3dx_deploy_properties.csv</td></tr><tr><td>DataHandler/ConfigurationFiles/PackagingExtData.xml</td></tr><tr><td>Java/pgPDFViewGenerator/pgIPMPDFViewUtil_mxJPO.java</td></tr><tr><td>DataHandler/ConfigurationFiles/DHImport/xsl/GPSIngredients_Formula.xsl</td></tr><tr><td>DataHandler/ConfigurationFiles/DHImport/xsl/IngTransparencySML_Formula.xsl</td></tr><tr><td>DataHandler/ConfigurationFiles/StructuredATSData.xml</td></tr><tr><td>SpinnerPagePrograms/Business/PageFiles/pgMaterialGroupCodePage</td></tr><tr><td>gplm/scripts/OPTeam/ScientificNotations/ScientificNotations.tcl</td></tr><tr><td>Web/common/images/iconSmallStatusAlert.gif</td></tr><tr><td>DataHandler/ConfigurationFiles/FinishedProductDSODataElement.xml</td></tr><tr><td>Web/common/images/pgIntelligentDesignLogo_02.gif</td></tr><tr><td>gplm/scripts/OPTeam/WareHouseClassificationCleanUpScript/WareHouseClassification_CleanUpScript.tcl</td></tr><tr><td>Java/pgApollo/com/png/apollo/designtool/getData/ReadWriteXMLForPLMDTDocument.java</td></tr><tr><td>DataHandler/ConfigurationFiles/ConsumerUnitDataElement.xml</td></tr><tr><td>Web/common/images/pgProficy.png</td></tr><tr><td>DataHandler/ConfigurationFiles/GDCPartDataElement.xml</td></tr><tr><td>ClientConfig/Enginuity/Post-Scripts/payara5/glassfish/domains/enginuity/docroot/index.html</td></tr><tr><td>DataHandler/ConfigurationFiles/PerfSpecsExtDataElement.xml</td></tr><tr><td>SpinnerPagePrograms/Business/SourceFiles/bioFormFormulaCloudIntegration_mxJPO.java</td></tr><tr><td>SpinnerPagePrograms/Business/SourceFiles/pgDSMLayeredProductCopyUtil_mxJPO.java</td></tr><tr><td>gplm/scripts/OPTeam/ObsoleteListedFormulaCard/ObsoleteListedFormulaCard_V2.tcl</td></tr><tr><td>Java/pgApollo/com/png/apollo/apprequest/PGAPPRequestImplementation.java</td></tr><tr><td>SpinnerPagePrograms/Business/SourceFiles/pgFISConstants_mxJPO.java</td></tr><tr><td>DataHandler/ConfigurationFiles/DHImport/xsl/IngTransparencySML_ProductPart.xsl</td></tr><tr><td>Web/common/scripts/pgPLIDesignAdvisor.js</td></tr><tr><td>gplm/scripts/PGRTAPASSIntegration/PGRTASizeBaseResposeToRulesManager.java</td></tr><tr><td>DataHandler/ConfigurationFiles/PackagingExtDataElement.xml</td></tr><tr><td>gplm/scripts/OPTeam/ObsoleteListedSpecs/ObsoleteListedSpecs.tcl</td></tr><tr><td>gplm/scripts/gplm400_UserJustificationSiteReports.sh</td></tr></table>
+    </div>
+    
+    <div id="ReportSummaryDiv" name="ReportSummary" class="tabcontent" style="display:none">
+        <h2>Report Summary</h2>
+        <table border="1" style="width: 50%;">
+            <tr><td>User Story # covered</td><td>0</td></tr>
+            <tr><td>PR # Merged</td><td>30</td></tr>
+            <tr><td>PR # Open</td><td>0</td></tr>
+            <tr><td>Files # Modified</td><td>77</td></tr>
+            <tr><td>Files # Added</td><td>17</td></tr>
+            <tr><td>Files # Deleted</td><td>2</td></tr>
+            <tr><td>Schema Changes</td><td>Yes</td></tr>
+            <tr><td>Web Changes</td><td>Yes</td></tr>
+            <tr><td>Webservice/Java Changes</td><td>Yes</td></tr>
+            <tr><td>GPLM Changes</td><td>Yes</td></tr>
+            <tr><td>Migration Needed</td><td>No</td></tr>
+        </table>
+    </div>
+    
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.js"></script>
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        function toggleList(pr_number) {
+            var list = document.getElementById("expandable-list"+pr_number);
+            if (list.classList.contains("show")) {
+                list.classList.remove("show");
+                toggleButton = document.getElementById(pr_number);
+            toggleButton.textContent = "File";
+            toggleButton.classList.add("toggle-button")
+            list.parentNode.insertBefore(toggleButton, list.nextSibling);
+
+            } else {
+                list.classList.add("show");
+                toggleButton = document.getElementById(pr_number);
+                toggleButton.textContent = "Close Files";
+                toggleButton.classList.remove("toggle-button")
+                list.appendChild(toggleButton);
+
+            }
+        }
+    
+
+        function toggleCollapsible(pr_number) {
+            var content = document.getElementById("collapsibleContent" + pr_number);
+            var button = document.getElementById("prDesc_" + pr_number);
+            if (content.style.display === "block") {
+                content.style.display = "none";
+                button.classList.remove("active");
+            } else {
+                content.style.display = "block";
+                button.classList.add("active");
+            }
+        }
+        
+        function togglefolder(foldername) {
+            var list = document.getElementById("expandable-list" + foldername);
+            var button = document.getElementById(foldername);
+            if (list.classList.contains("show")) {
+                list.classList.remove("show");
+                button.textContent = foldername;
+            } else {
+                list.classList.add("show");
+                button.textContent = "Hide " + foldername + " Files";
+            }
+        }
+
+        //initialize datatable for merged pr
+        var merged_pr_table = $('#merged-pr-table').DataTable({
+            searching: true,
+            paging: false,
+            pageLength: 20,
+            ordering: false
+        });
+
+        //create filter for merged pr table column with .enable-filter class
+        $('#merged-pr-table th.enable-filter').each(function () {
+            var column = merged_pr_table.column($(this).index());
+            var header = $(column.header());
+            var input = $('<input style="display:none;" type="text" placeholder="Search..."/>')
+                .appendTo(header)
+                .on('keyup change clear', function () {
+                    if (column.search() !== this.value) {
+                        column
+                            .search(this.value)
+                            .draw();
+                    }
+                });
+        });
+
+        //initialize datatable for open pr
+        var open_pr_table = $('#open-pr-table').DataTable({
+            searching: true,
+            paging: false,
+            pageLength: 20,
+            ordering: false
+        });
+
+        //create filter for open pr table column with .enable-filter class
+        $('#open-pr-table th.enable-filter').each(function () {
+            var column = open_pr_table.column($(this).index());
+            var header = $(column.header());
+            var input = $('<input style="display:none;" type="text" placeholder="Search..."/>')
+                .appendTo(header)
+                .on('keyup change clear', function () {
+                    if (column.search() !== this.value) {
+                        column
+                            .search(this.value)
+                            .draw();
+                    }
+                });
+        });
+        
+        //toggling search box
+        $(".enable-filter span").click(function () {
+            $(this).siblings('input').toggle();
+            // Check if the input is empty or not
+            if ($(this).siblings('input').val()) {
+                $(this).parent().addClass('active');
+            } else {
+                $(this).parent().removeClass('active');
+            }
+        });
+
+        // hiding not required components of datatable
+        $('.dataTables_filter').hide();
+        $('.dataTables_length').hide();
+        $('.dataTables_info').hide();
+    </script>
+    </body>
+    </html>
+    
